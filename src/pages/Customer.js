@@ -5,12 +5,14 @@ import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from '@material-table/exporters';
 import { Modal, Button } from 'react-bootstrap'
 import {fetchTicket,ticketCreation,ticketUpdation} from '../Api/tickets.js'
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "../styles/admin.css"
 
 
 const logoutFn=()=>{
     localStorage.clear();
-      window.location.href ="/"
+      window.location.href ="/singin"
   }
 
 
@@ -176,6 +178,7 @@ function User() {
                   <h3 className="text-success text-center">Welcome, {localStorage.getItem("name")}</h3>
                   <p className="text-muted text-center">Take a quick looks at your admin stats below. </p>
   
+
                   {/* card */}
                   <div className="row my-5 mx-2 text-center">
   
@@ -242,7 +245,7 @@ function User() {
                             </div>
   
                             <div className="col-xs-12 col-lg-3 col-md-6 my-1">
-                                <div className="card shadow  bg-secondary text-dark bg-opacity-25 borders-grey" style={{ width: 15 + 'rem' }}>
+                                <div className="card shadow  bg-secondary text-dark bg-opacity-25 borders-gr" style={{ width: 15 + 'rem' }}>
                                     <div className="card-body">
                                         <h5 className="card-subtitle mb-2"><i className="bi bi-slash-circle text-secondary mx-2"></i>Blocked </h5>
                                         <hr />
@@ -359,7 +362,7 @@ function User() {
                                         <Button variant="secondary"  onClick={() => closeTicketCreationModal()} >Cancel</Button>
                                     </div>
                                     <div className="m-1">
-                                        <Button type="submit" variant="success" >Create</Button>
+                                        <Button type="submit" variant="success" onClick={()=>toast(message)} >Create</Button>
                                     </div>
                                 </div>
                             </form>
@@ -423,7 +426,7 @@ function User() {
                                         <Button variant="secondary" onClick={() => closeTicketUpdationModal()}>Cancel</Button>
                                     </div>
                                     <div className="m-1">
-                                        <Button type="submit" variant="primary" >Update</Button>
+                                        <Button type="submit" variant="primary" onClick={()=>toast(message)} >Update</Button>
                                     </div>
                                 </div>
                                 
@@ -445,7 +448,7 @@ function User() {
               </div>
               <br />
               
-            
+              <ToastContainer/>
           </div>
       )
   

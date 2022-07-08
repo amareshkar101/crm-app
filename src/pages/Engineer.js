@@ -6,6 +6,9 @@ import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import { Modal, Button } from "react-bootstrap";
 import { fetchTicket, ticketUpdation } from '../Api/tickets'
 import { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "../styles/admin.css"
 
 
 /* 
@@ -25,7 +28,7 @@ Api: ticketUpdation, fetchTicket
 
 const logoutFn = () => {
   localStorage.clear();
-  window.location.href = "/"
+  window.location.href = "/singin"
 }
 
 function Engineer() {
@@ -155,25 +158,29 @@ function Engineer() {
     <div className="bg-light min-vh-100">
       {/* <div className="col-1"><Sidebar /></div> */}
       <div className="col-1"><Sidebar /></div>
+
       <div className="container x-100 ">
 
         <h3 className="text-info text-center">Welcome, {localStorage.getItem("name")}</h3>
         <p className="text-muted text-center">Take a look at your engineer stats below</p>
-        <div className="row container my-5 mx-2 text-center">
-          <div className="col my-1 p-2">
-            <div className="borders-b card bg-primary bg-opacity-25 p-2" style={{ width: 12 + 'rem' }}>
-              <div className="cardbody">
-                <h5 className="card-subtitle">
-                  <i className="bi bi-pen text-primary mx-2"></i>
+
+        
+                {/* STATS CARDS START HERE */}
+        <div className="row my-5 mx-2 text-center">
+          <div className="col-xs-12 col-lg-3 col-md-6 my-1">
+            <div className="card  cardItem shadow  bg-primary text-dark bg-opacity-25 borders-b" style={{ width: 15 + 'rem' }}>
+              <div className="card-body">
+                <h5 className="card-subtitle mb-2">
+                <i className="bi bi-pencil text-primary mx-2"></i>
                   OPEN
                 </h5>
                 <hr />
                 <div className="row">
                   <div className="col">
-                    {ticketCount.open}
+                  <h1 className="col text-dark mx-4">  {ticketCount.open} </h1> 
                   </div>
                   <div className="col">
-                    <div style={{ height: 30, width: 30 }}>
+                    <div style={{ height: 40, width: 40 }}>
                       <CircularProgressbar value={ticketCount.open}
                         styles={buildStyles({
                           textColor: "blue",
@@ -191,18 +198,20 @@ function Engineer() {
             </div>
 
           </div>
-          <div className="col my-1 p-2">
-            <div className="borders-b card bg-warning bg-opacity-25 p-2" style={{ width: 12 + 'rem' }}>
-              <div className="cardbody">
-                <h5 className="card-subtitle">
+
+
+          <div className="col-xs-12 col-lg-3 col-md-6 my-1">
+            <div className="card shadow  bg-warning text-dark bg-opacity-25 borders-y" style={{ width: 15 + 'rem' }}>
+              <div className="card-body">
+                <h5 className="card-subtitle mb-2">
                   <i className="bi bi-lightning-charge text-warning mx-2"></i>
                   PROGRESS
                 </h5>
                 <hr />
                 <div className="row">
-                  <div className="col"> {ticketCount.progress}</div>
+                  <div className="col"> <h1 className="col text-dark mx-4"> {ticketCount.progress}</h1>  </div>
                   <div className="col">
-                    <div style={{ height: 30, width: 30 }}>
+                    <div style={{ height: 40, width: 40 }}>
                       <CircularProgressbar value={ticketCount.progess}
                         styles={buildStyles({
                           textColor: "yellow",
@@ -218,20 +227,21 @@ function Engineer() {
               </div>
 
             </div>
-
           </div>
-          <div className="col my-1 p-2">
-            <div className="borders-b card bg-success bg-opacity-25 p-2" style={{ width: 12 + 'rem' }}>
-              <div className="cardbody">
-                <h5 className="card-subtitle">
+
+
+          <div className="col-xs-12 col-lg-3 col-md-6 my-1">
+            <div className="card shadow  bg-success text-dark bg-opacity-25 borders-g" style={{ width: 15 + 'rem' }}>
+              <div className="card-body">
+                <h5 className="card-subtitle mb-2">
                   <i className="bi bi-check2-circle text-success mx-2"></i>
                   CLOSED
                 </h5>
                 <hr />
                 <div className="row">
-                  <div className="col">{ticketCount.closed}</div>
+                  <div className="col">  <h1 className="col text-dark mx-4"> {ticketCount.closed} </h1> </div>
                   <div className="col">
-                    <div style={{ height: 30, width: 30 }}>
+                    <div style={{ height: 40, width: 40 }}>
                       <CircularProgressbar value={ticketCount.closed}
                         styles={buildStyles({
                           textColor: "green",
@@ -247,20 +257,21 @@ function Engineer() {
               </div>
 
             </div>
-
           </div>
-          <div className="col my-1 p-2">
-            <div className="borders-b card bg-secondary bg-opacity-25 p-2" style={{ width: 12 + 'rem' }}>
-              <div className="cardbody">
-                <h5 className="card-subtitle">
+
+
+          <div className="col-xs-12 col-lg-3 col-md-6 my-1">
+            <div className="card shadow  bg-secondary text-dark bg-opacity-25 borders-gr" style={{ width: 15 + 'rem' }}>
+              <div className="card-body">
+                <h5 className="card-subtitle mb-2">
                   <i className="bi bi-slash-circle text-secondary mx-2"></i>
                   BLOCKED
                 </h5>
                 <hr />
                 <div className="row">
-                  <div className="col">{ticketCount.blocked}</div>
+                  <div className="col">  <h1 className="col text-dark mx-4"> {ticketCount.blocked} </h1> </div>
                   <div className="col">
-                    <div style={{ height: 30, width: 30 }}>
+                    <div style={{ height: 40, width: 40 }}>
                       <CircularProgressbar value={ticketCount.blocked}
                         styles={buildStyles({
                           textColor: "grey",
@@ -278,12 +289,11 @@ function Engineer() {
             </div>
 
           </div>
-
-
         </div>
 
         <hr />
         
+
         <MaterialTable
           data={ticketDetails}
           // grab the specific row and pass it in a function : read
@@ -403,7 +413,7 @@ function Engineer() {
                       <Button variant="secondary" onClick={() => onCloseTicketModal()}>Cancel</Button>
                     </div>
                     <div className="m-1">
-                      <Button type="submit" variant="primary" >Update</Button>
+                      <Button type="submit" variant="primary" onClick={()=>toast(message)} >Update</Button>
                     </div>
                   </div>
 
@@ -426,6 +436,7 @@ function Engineer() {
 
       </div>
       <br />
+      <ToastContainer/>
     </div>
   )
 }

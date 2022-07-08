@@ -21,3 +21,28 @@
 .borders-y:hover {
     transform:scale(1.05);
 }
+
+.borders-g{
+    border-bottom: 5px solid darkgreen;
+    border-radius: 5px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08) 0 6px 10px rgba(0, 0, 0, .05);
+    transition: .3 ease-in;
+    cursor:pointer;
+}
+
+.borders-g:hover{
+    transform:scale(1.05);
+}
+
+.borders-gr{
+    border-bottom: 5px solid darkgrey;
+    border-radius: 5px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08) 0 6px 10px rgba(0, 0, 0, .05);
+    transition: .3 ease-in;
+    cursor:pointer;
+}
+
+
+.borders-gr:hover{
+    transform:scale(1.05);
+}

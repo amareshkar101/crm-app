@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import "./Unauthorised.css"
 import not from '../assets/403.svg'
 
 

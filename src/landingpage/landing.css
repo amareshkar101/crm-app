@@ -1,0 +1,38 @@
+.i {
+    display: flex;
+    height: 100vh;
+    padding-left: 20px;
+    padding-top: 70px;
+}
+
+.i-left {
+    flex: 1;
+}
+
+img {
+    width: 650px;
+    height: 600px;
+}
+
+.i-right {
+    flex: 1;
+    padding-left: 20px;
+    margin-top: 20px ;
+    margin-left: 20px;
+    margin-right: 15px;
+}
+
+.heading {
+    font-size: 65px;
+    color: #3F51B5;
+    font-weight: bold;
+}
+
+p{
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 400;
+}
+Link{
+    text-decoration: none;
+}

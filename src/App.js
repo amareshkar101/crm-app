@@ -1,8 +1,9 @@
 import Login from "./pages/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
+import LandingPage from "./landingpage/LandingPage"
+import SignInOutContainer from "./containers/index"
 import Admin from "./pages/Admin";
-// const Admin = React.lazy(()=> import("./pages/Admin"))
 import RequireAuth from "./component/RequireAuth";
 import Engineer from "./pages/Engineer";
 import Customer from "./pages/Customer";
@@ -30,10 +31,14 @@ function App() {
           path="/"
           element={
             <Suspense fallback={<div>Loading...</div>}>
-              <Login />
+              <LandingPage />
+              {/* <Login/> */}
             </Suspense>
           }
         />
+        {/* Sign-in/Sign-up Route*/}
+        <Route path="/singin" element={<SignInOutContainer/>} /> 
+
         <Route path="unauthorized" element={<Unauthorized />} />
         {/* ROLES.ADMIN ====  [ADMIN] */}
           <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>  
