@@ -1,4 +1,4 @@
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import LandingPage from "./landingpage/LandingPage"
