@@ -14,6 +14,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import HomeIcon from '@mui/icons-material/Home';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const drawerWidth = 150;
@@ -77,15 +79,14 @@ export default function Sidebar() {
   /// logout
   const logoutFn = () => {
     localStorage.clear();
-
     window.location.href = "/singin";
-
+    toast.success("Logging out!",{autoClose: 4000})
   }
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
   return (
-
+<>
     <Box sx={{ display: 'flex' }} >
 
       <Drawer
@@ -122,6 +123,7 @@ export default function Sidebar() {
 
       </Drawer>
     </Box>
-
+    <ToastContainer/>
+</>
   );
 }

@@ -20,6 +20,7 @@ const SignInOutContainer = () => {
     const { children, value, index, ...other } = props;
 
     return (
+    
       <div
         role="tabpanel"
         hidden={value !== index}
@@ -37,6 +38,7 @@ const SignInOutContainer = () => {
   }
 
   return (
+  
     <div className='home'>
       <Paper elevation={20}
         style={paperStyle}
@@ -59,8 +61,9 @@ const SignInOutContainer = () => {
           <Signup handleChange={handleChange} />
         </TabPanel>
       </Paper>
+      
     </div>
-
+  
   )
 }
 

@@ -113,15 +113,19 @@ function Engineer() {
     e.preventDefault()
     ticketUpdation(selectedCurrTicket.id, selectedCurrTicket).then(function (response) {
       setMessage("Ticket Updated Successfully");
+      toast.success("Ticket Updated Successfully",{autoClose: 4000})
       onCloseTicketModal();
       fetchTickets();
 
     }).catch(function (error) {
-      if (error.status === 400)
+      if (error.status === 400) {
         setMessage(error.message);
+        toast.error(error.message,{autoClose: 4000})
+      }
       else if (error.response.status === 401) {
         logoutFn()
         setMessage("Authorization error, retry loging in");
+        toast.error("Authorization error, retry loging in",{autoClose: 4000})
       }
       onCloseTicketModal();
 
@@ -164,20 +168,20 @@ function Engineer() {
         <h3 className="text-info text-center">Welcome, {localStorage.getItem("name")}</h3>
         <p className="text-muted text-center">Take a look at your engineer stats below</p>
 
-        
-                {/* STATS CARDS START HERE */}
+
+        {/* STATS CARDS START HERE */}
         <div className="row my-5 mx-2 text-center">
           <div className="col-xs-12 col-lg-3 col-md-6 my-1">
             <div className="card  cardItem shadow  bg-primary text-dark bg-opacity-25 borders-b" style={{ width: 15 + 'rem' }}>
               <div className="card-body">
                 <h5 className="card-subtitle mb-2">
-                <i className="bi bi-pencil text-primary mx-2"></i>
+                  <i className="bi bi-pencil text-primary mx-2"></i>
                   OPEN
                 </h5>
                 <hr />
                 <div className="row">
                   <div className="col">
-                  <h1 className="col text-dark mx-4">  {ticketCount.open} </h1> 
+                    <h1 className="col text-dark mx-4">  {ticketCount.open} </h1>
                   </div>
                   <div className="col">
                     <div style={{ height: 40, width: 40 }}>
@@ -292,7 +296,7 @@ function Engineer() {
         </div>
 
         <hr />
-        
+
 
         <MaterialTable
           data={ticketDetails}
@@ -360,7 +364,7 @@ function Engineer() {
 
 
         />
-        
+
 
         {
           ticketModal ? (
@@ -413,7 +417,7 @@ function Engineer() {
                       <Button variant="secondary" onClick={() => onCloseTicketModal()}>Cancel</Button>
                     </div>
                     <div className="m-1">
-                      <Button type="submit" variant="primary" onClick={()=>toast(message)} >Update</Button>
+                      <Button type="submit" variant="primary" >Update</Button>
                     </div>
                   </div>
 
@@ -436,7 +440,7 @@ function Engineer() {
 
       </div>
       <br />
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   )
 }

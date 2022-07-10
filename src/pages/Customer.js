@@ -107,12 +107,16 @@ function User() {
          // call the api 
         ticketCreation(data).then(function (response){
             setMessage("Ticket Created Successfully");
+            toast.success("Ticket Created Successfully",{autoClose: 4000})
             closeTicketCreationModal();
             fetchTickets();
 
         }).catch(function (error){
             if (error.response.status === 400)
+                 {   
                     setMessage(error.message);
+                    toast.error(error.message,{autoClose: 4000})
+                }
                     else if(error.response.status === 401)
                     {
                       logoutFn()
@@ -127,12 +131,16 @@ function User() {
         e.preventDefault()
         ticketUpdation(selectedCurrTicket.id,selectedCurrTicket).then(function (response){
             setMessage("Ticket Updated Successfully");
+            toast.success("Ticket Updated Successfully",{autoClose: 4000})
             closeTicketUpdationModal();
             fetchTickets();
 
         }).catch(function (error){
             if (error.response.status === 400)
-                setMessage(error.message);
+                {
+                    setMessage(error.message);
+                toast.error(error.message,{autoClose: 4000})
+            }
             else if(error.response.status === 401)
             logoutFn();
                 
@@ -268,7 +276,7 @@ function User() {
 
                  <hr />
 
-                 <p className="text-success">{message}</p>
+                 {/* <p className="text-success">{message}</p> */}
                   {/* <MuiThemeProvider theme={theme}> */}
                   <MaterialTable
                       onRowClick={(event,rowData) => editTicket(rowData)}
@@ -287,7 +295,7 @@ function User() {
                           {
                               title: "DESCRIPTIONS",
                               field: "description",
-                              filtering: false
+                           
                           },
                           {
                               title: "REPORTER",
@@ -362,7 +370,7 @@ function User() {
                                         <Button variant="secondary"  onClick={() => closeTicketCreationModal()} >Cancel</Button>
                                     </div>
                                     <div className="m-1">
-                                        <Button type="submit" variant="success" onClick={()=>toast(message)} >Create</Button>
+                                        <Button type="submit" variant="success"  >Create</Button>
                                     </div>
                                 </div>
                             </form>
@@ -426,7 +434,7 @@ function User() {
                                         <Button variant="secondary" onClick={() => closeTicketUpdationModal()}>Cancel</Button>
                                     </div>
                                     <div className="m-1">
-                                        <Button type="submit" variant="primary" onClick={()=>toast(message)} >Update</Button>
+                                        <Button type="submit" variant="primary"  >Update</Button>
                                     </div>
                                 </div>
                                 

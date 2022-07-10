@@ -104,12 +104,15 @@ function Admin() {
                 userList[idx] = userDetail
                 closeUserModal();
                 setMessage("User detail updated successfully");
-
+                toast.success("User detail updated successfully",{autoClose: 4000})
             }
         })
             .catch(function (error) {
                 if (error.status === 400)
+                {
                     setMessage(error.message);
+                    toast.error(message,{autoClose: 4000})
+                }
                 else if (error.response.status === 401) {
                     logoutFn();
 
@@ -596,7 +599,7 @@ function Admin() {
                                             <Button variant="secondary" onClick={() => closeTicketUpdationModal()}>Cancel</Button>
                                         </div>
                                         <div className="m-1">
-                                            <Button type="submit" variant="primary" onClick={() => toast(message)} >Update</Button>
+                                            <Button type="submit" variant="primary" onClick={() => toast.success(message,{autoClose: 4000})} >Update</Button>
                                         </div>
                                     </div>
 

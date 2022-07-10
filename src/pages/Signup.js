@@ -53,13 +53,14 @@ function Signup({ handleChange }) {
         clearState()
         setError(false)
         setMessage("User Signed Up Successfully...")
+        toast.success("User Signed Up Successfully...",{autoClose: 4000})
       }
     })
       .catch(function (error) {
         if (error.response.status === 400) {
           setError(true)
           setMessage(error.response.data.message);
-
+          toast.error(error.response.data.message,{autoClose: 4000})
         }
         else
           console.log(error);
@@ -166,7 +167,7 @@ function Signup({ handleChange }) {
           </Box>
 
 
-          <Button type='submit' variant='contained' onClick={()=>toast(message)}  style={{ margin: "5px auto" }} fullWidth color="primary">
+          <Button type='submit' variant='contained'  style={{ margin: "5px auto" }} fullWidth color="primary">
             Sign Up
           </Button>
 
